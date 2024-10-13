@@ -1,6 +1,6 @@
 import '../custom.css';
 
-const ChrClass = ({ classList }) => {
+const ChrClass = ({ classList, setShowClassReqs }) => {
     return (
         <div className='section'>
             <table>
@@ -14,7 +14,7 @@ const ChrClass = ({ classList }) => {
                         classList?.length > 0 ? classList.map((classItem, index) => {
                             return (
                                 <tr className='text' key={index}>
-                                    <td> {classItem.name} </td>
+                                    <td onClick={() => setShowClassReqs(classItem.id)} > {classItem.name} </td>
                                 </tr>
                             )
                         }) : <tr> <td> No data available </td> </tr>

@@ -11,6 +11,7 @@ const Character = ({ character }) => {
     const [classList, setClassList] = useState(character.classes);
     const [skillList, setSkillList] = useState(character.skills);
 
+    const [showClassReqs, setShowClassReqs] = useState(0);
 
     return (
         <div>
@@ -20,8 +21,8 @@ const Character = ({ character }) => {
             </div>
             <div className='div-row'>
                 <ChrAttribute attributeList={attributeList} setAttributeList={setAttributeList} />
-                <ChrClass classList={classList} />
-                {/* <ChrClassReqs /> */}
+                <ChrClass classList={classList} setShowClassReqs={setShowClassReqs} />
+                {showClassReqs !== 0 ? <ChrClassReqs selectedClass={showClassReqs} setShowClassReqs={setShowClassReqs} /> : null}
                 <ChrSkill skillList={skillList} />
             </div>
         </div>
