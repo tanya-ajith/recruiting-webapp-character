@@ -19,7 +19,7 @@ const Character = ({ character }) => {
                 <SkillCheck />
             </div>
             <div className='div-row'>
-                <ChrAttribute attributeList={attributeList} />
+                <ChrAttribute attributeList={attributeList} setAttributeList={setAttributeList} />
                 <ChrClass classList={classList} />
                 {/* <ChrClassReqs /> */}
                 <ChrSkill skillList={skillList} />
