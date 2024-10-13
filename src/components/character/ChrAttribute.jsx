@@ -3,20 +3,27 @@ import '../custom.css';
 const ChrAttribute = ({ attributeList, setAttributeList }) => {
 
     const handleIncrease = (key) => {
-        let updatedAttribute = attributeList[key];
-        updatedAttribute.value += 1;
+        // checks for max attribute limit of 70
+        const total = attributeList.reduce((sum, attribute) => sum + attribute.value, 0);
 
-        //modifier value logic
-        if (updatedAttribute.value >= 10) {
-            updatedAttribute.modifierValue = Math.floor((updatedAttribute.value - 10) / 2);
+        if (total >= 70) {
+            alert('A character can have upto 70 delegated attribute points');
         } else {
-            updatedAttribute.modifierValue = Math.ceil((10 - updatedAttribute.value) / 2) * -1;
-        }
+            let updatedAttribute = attributeList[key];
+            updatedAttribute.value += 1;
 
-        const updatedAttributeList = attributeList.map((attribute) => {
-            return attribute.name === updatedAttribute.name ? updatedAttribute : attribute;
-        });
-        setAttributeList(updatedAttributeList);
+            //modifier value logic
+            if (updatedAttribute.value >= 10) {
+                updatedAttribute.modifierValue = Math.floor((updatedAttribute.value - 10) / 2);
+            } else {
+                updatedAttribute.modifierValue = Math.ceil((10 - updatedAttribute.value) / 2) * -1;
+            }
+
+            const updatedAttributeList = attributeList.map((attribute) => {
+                return attribute.name === updatedAttribute.name ? updatedAttribute : attribute;
+            });
+            setAttributeList(updatedAttributeList);
+        }
     }
 
     const handleDecrease = (key) => {
