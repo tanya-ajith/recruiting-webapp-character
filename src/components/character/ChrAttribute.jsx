@@ -1,6 +1,7 @@
+import { CLASS_LIST } from '../../consts';
 import '../custom.css';
 
-const ChrAttribute = ({ attributeList, setAttributeList }) => {
+const ChrAttribute = ({ attributeList, setAttributeList, classList }) => {
 
     const handleIncrease = (key) => {
         // checks for max attribute limit of 70
@@ -23,6 +24,8 @@ const ChrAttribute = ({ attributeList, setAttributeList }) => {
                 return attribute.name === updatedAttribute.name ? updatedAttribute : attribute;
             });
             setAttributeList(updatedAttributeList);
+
+            checkMinReqs();
         }
     }
 
@@ -41,6 +44,29 @@ const ChrAttribute = ({ attributeList, setAttributeList }) => {
             return attribute.name === updatedAttribute.name ? updatedAttribute : attribute;
         });
         setAttributeList(updatedAttributeList);
+
+        checkMinReqs();
+    }
+
+    const checkMinReqs = () => {
+        Object.entries(CLASS_LIST).forEach((classItem) => {
+            let isMetReqs = true;
+
+            // breaks out of loop when an attribute doesn't match the class min req
+            for (const [key, value] of Object.entries(classItem[1])) {
+                if (attributeList.find(attribute => attribute.name === key && attribute.value < value)) {
+                    isMetReqs = false;
+                    break;
+                }
+            }
+
+            let matchedClass = classList.find(item => item.name === classItem[0]);
+
+            // for class to be red
+            if (matchedClass) {
+                isMetReqs ? matchedClass.isMetReqs = true : matchedClass.isMetReqs = false;
+            }
+        });
     }
 
     return (
