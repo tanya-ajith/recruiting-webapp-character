@@ -5,3 +5,27 @@
 
     margin: 10px;
 }
+
+.header {
+    font-weight: bold;
+    font-size: x-large;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    
+    padding: 10px;
+    text-align: center;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    margin: 10px;
+
+    font-size: x-large;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.text {
+    text-align: left;
+    font-size: x-large;
+}
